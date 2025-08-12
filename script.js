@@ -49,26 +49,33 @@ submit.onclick = function (){
     category : category.value , 
   }
 
+   if( newPro.title != '' && newPro.price != '' && newPro.category != ''){
+
   if(mood === "create"){
-   if(newPro.count>1){
+   if(newPro.count>1 && newPro.count < 20){
   for (let i = 0 ; i < newPro.count ; i++){
       dataPro.push(newPro);
       console.log(newPro.count);
   }
+ }else if(newPro.count>20){
+   alert("the maximum of count is 20 please enter another number");
  }else{
-    dataPro.push(newPro);
- } 
+   dataPro.push(newPro);
+ }
 } else{
      dataPro[temp]= newPro; 
      mood ="create" ;
      submit.innerHTML = 'create' ; 
      count.style.display = "block" ; 
-     
+     clearData();
   }
+   }else{
+    alert("You must enter the essential information: price, title, and category. Thanks");
+   }
 
   localStorage.setItem("product" , JSON.stringify(dataPro)); 
+  clearData();
   console.log(dataPro); 
-   clearData();
    showData();
 }
 
@@ -82,6 +89,7 @@ function clearData(){
     total.innerHTML ="";
     discount.value ="";
     category.value="";
+    ads.value = "";
 }
 
 // read 
@@ -230,15 +238,19 @@ function searchData(value){
       document.getElementById('tbody').innerHTML = tablesearch ; 
       deleteall.innerHTML = `DELETE ALL ${j}` ; 
       moodelete = "pasnormal" ;
-      deleteall.addEventListener("click", function(){
-    for (let k = foundindexes.length - 1; k >= 0; k--) {
-        dataPro.splice(foundindexes[k], 1);
+      deleteall.onclick = function () {
+    if (moodelete === "normal") {
+        deleteAll();
+    } else {
+        // suppression des résultats filtrés
+        for (let k = foundindexes.length - 1; k >= 0; k--) {
+            dataPro.splice(foundindexes[k], 1);
+        }
+        localStorage.setItem("product", JSON.stringify(dataPro));
+        clearData();
+        showData();
+        moodelete = "normal";
     }
-    localStorage.setItem("product", JSON.stringify(dataPro));
-    deleteall.innerHTML = `DELETE ALL ${dataPro.length}` ; 
-    showData();
-       });
-    }
+};
 
-
-// cleandata
+}
