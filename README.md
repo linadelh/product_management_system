@@ -1,11 +1,14 @@
 # Product Management System (CRUDS)
 
-This is a simple Product Management System built with pure HTML, CSS, and JavaScript — no frameworks, just vanilla code.  
-It allows you to Create, Read, Update, and Delete products, as well as search and filter them easily.
+This is a **simple Product Management System** built with pure HTML, CSS, and JavaScript *no frameworks, just vanilla code*  
+It allows you to **Create, Read, Update, and Delete products**, as well as **search and filter them easily**.
 
 ---
 
 ## Features
+
+![screenshot of the project](CRUDS.png)
+
 
 - Add products with details like:
   - Title (required)
@@ -21,6 +24,7 @@ It allows you to Create, Read, Update, and Delete products, as well as search an
   - Individually
   - All at once
 - Local storage support — your data stays even after refreshing the page.
+
 ---
 
  ## Installation
