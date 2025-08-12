@@ -9,6 +9,8 @@ let total = document.getElementById("total");
 let count = document.getElementById("count");
 let category = document.getElementById("category");
 let submit = document.getElementById("submit");
+let mood = "create" ; 
+let temp ; 
 
 // get total function 
 
@@ -45,8 +47,19 @@ submit.onclick = function (){
     count : count.value , 
     category : category.value , 
   }
-  
-  dataPro.push(newPro);
+
+  if(mood === "create"){
+   if(newPro.count>1){
+  for (let i = 0 ; i < newPro.count ; i++){
+        dataPro.push(newPro);
+  }
+}else{
+    dataPro.push(newPro);
+}
+  }else{
+     dataPro[temp]= newPro; 
+  }
+
   localStorage.setItem("product" , JSON.stringify(dataPro)); 
   console.log(dataPro); 
    clearData();
@@ -92,6 +105,9 @@ function showData(){
        }else {
     deleteall.style.display ="none" ; 
        }
+
+       let totaldelete = dataPro.length ; 
+       deleteall.innerHTML = `delete all (${totaldelete})`;
 }
 
 showData(); 
@@ -111,35 +127,28 @@ function updateData(i){
       taxes.value = dataPro[i].taxes ; 
       ads.value = dataPro[i].ads ; 
       discount.value = dataPro[i].discount ; 
-      total.innerHTML = dataPro[i].total ; 
+      getTotal() ;
       category.value = dataPro[i].category ; 
-      count.value = dataPro[i].count ; 
-  
-
-      
+      count.style.display ="none" ; 
+      submit.innerHTML ="update" ; 
+      mood ="update";
+      temp = i ; 
+     
 }
 
-// deleteall
 
+
+
+
+// deleteall
 function deleteAll(){
         localStorage.clear(); 
         dataPro.splice(0,dataPro.length); 
-         showData();
+        showData();
 }
 
 
 
-
-
-// let title = document.getElementById("title");
-// let price = document.getElementById("price");
-// let taxes = document.getElementById("taxes");
-// let ads = document.getElementById("ads");
-// let discount = document.getElementById("discount");
-// let total = document.getElementById("total");
-// let count = document.getElementById("count");
-// let category = document.getElementById("category");
-// let submit = document.getElementById("submit");
 
 
 
