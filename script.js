@@ -51,13 +51,18 @@ submit.onclick = function (){
   if(mood === "create"){
    if(newPro.count>1){
   for (let i = 0 ; i < newPro.count ; i++){
-        dataPro.push(newPro);
+      dataPro.push(newPro);
+      console.log(newPro.count);
   }
-}else{
+ }else{
     dataPro.push(newPro);
-}
-  }else{
+ } 
+} else{
      dataPro[temp]= newPro; 
+     mood ="create" ;
+     submit.innerHTML = 'create' ; 
+     count.style.display = "block" ; 
+     
   }
 
   localStorage.setItem("product" , JSON.stringify(dataPro)); 
@@ -80,6 +85,8 @@ function clearData(){
 
 // read 
 function showData(){
+
+     getTotal();
      let table = '';
      for (let i = 0 ; i < dataPro.length ; i++){
 
@@ -133,13 +140,12 @@ function updateData(i){
       submit.innerHTML ="update" ; 
       mood ="update";
       temp = i ; 
+      scroll({
+        top:0 ,
+        behavior : "smooth" ,
+      })
      
 }
-
-
-
-
-
 // deleteall
 function deleteAll(){
         localStorage.clear(); 
@@ -148,20 +154,20 @@ function deleteAll(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // search 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // cleandata
