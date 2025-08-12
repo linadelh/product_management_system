@@ -25,6 +25,8 @@ function getTotal(){
 
 // create product
 
+const deleteall = document.getElementById("deleteall");
+
 let dataPro;
 if (localStorage.getItem("product")) {
   dataPro = JSON.parse(localStorage.getItem("product"));
@@ -43,7 +45,7 @@ submit.onclick = function (){
     count : count.value , 
     category : category.value , 
   }
-
+  
   dataPro.push(newPro);
   localStorage.setItem("product" , JSON.stringify(dataPro)); 
   console.log(dataPro); 
@@ -78,13 +80,18 @@ function showData(){
                 <td>${dataPro[i].discount}</td>
                 <td>${dataPro[i].total}</td>
                 <td>${dataPro[i].category}</td>
-                <td><button id="update">update</button></td>
+                <td><button id="update" onclick="updateData(${i})">update</button></td>
                 <td><button id="delete" onclick="deleteData(${i})">delete</button></td> 
                </tr>
      ` ;
 
      }
      document.getElementById('tbody').innerHTML = table ; 
+     if(dataPro.length !== 0 ){
+    deleteall.style.display ="block" ; 
+       }else {
+    deleteall.style.display ="none" ; 
+       }
 }
 
 showData(); 
@@ -97,22 +104,54 @@ function deleteData(i){
   showData();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // update 
+function updateData(i){
+      title.value = dataPro[i].title ; 
+      price.value = dataPro[i].price ; 
+      taxes.value = dataPro[i].taxes ; 
+      ads.value = dataPro[i].ads ; 
+      discount.value = dataPro[i].discount ; 
+      total.innerHTML = dataPro[i].total ; 
+      category.value = dataPro[i].category ; 
+      count.value = dataPro[i].count ; 
+  
+
+      
+}
+
+// deleteall
+
+function deleteAll(){
+        localStorage.clear(); 
+        dataPro.splice(0,dataPro.length); 
+         showData();
+}
+
+
+
+
+
+// let title = document.getElementById("title");
+// let price = document.getElementById("price");
+// let taxes = document.getElementById("taxes");
+// let ads = document.getElementById("ads");
+// let discount = document.getElementById("discount");
+// let total = document.getElementById("total");
+// let count = document.getElementById("count");
+// let category = document.getElementById("category");
+// let submit = document.getElementById("submit");
+
+
+
+
+
+
+
+
+
+
+
+
 
 // search 
 
