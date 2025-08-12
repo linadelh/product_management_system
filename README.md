@@ -23,7 +23,7 @@ It allows you to **Create, Read, Update, and Delete products**, as well as **sea
 - Delete products:
   - Individually
   - All at once
-- Local storage support — your data stays even after refreshing the page.
+- Local storage support your data stays even after refreshing the page.
 
 ---
 
