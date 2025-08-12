@@ -11,6 +11,7 @@ let category = document.getElementById("category");
 let submit = document.getElementById("submit");
 let mood = "create" ; 
 let temp ; 
+let moodelete ="normal" ;
 
 // get total function 
 
@@ -155,19 +156,89 @@ function deleteAll(){
 
 
 // search 
+let search = document.getElementById("search");
+let searchMood = "title";
+
+ function getSearchMood(id){
+  
+    if(id === "searchTitle"){
+      searchMood = "title" ; 
+      search.placeholder = "Search By Title" ; 
+    }else{
+     searchMood = "category" ; 
+     search.placeholder = "Search By Category " ; 
+    }
+     console.log(searchMood);
+     search.focus(); 
+ }
 
 
+function searchData(value){
 
 
+     let foundindexes = [] ; 
+     let tablesearch ='';
+     let j=0;
+     if(searchMood==='title'){
+          
+     for (let i = 0 ; i < dataPro.length ; i++){
+      if(dataPro[i].title.includes(value)){
+        j++ ; 
+        foundindexes.push(i);
+        console.log(i);
+         tablesearch += `
+          <tr>
+                <td>${i}</td>
+                <td>${dataPro[i].title}</td>
+                <td>${dataPro[i].price}</td>
+                <td>${dataPro[i].taxes}</td>
+                <td>${dataPro[i].ads}</td>
+                <td>${dataPro[i].discount}</td>
+                <td>${dataPro[i].total}</td>
+                <td>${dataPro[i].category}</td>
+                <td><button id="update" onclick="updateData(${i})">update</button></td>
+                <td><button id="delete" onclick="deleteData(${i})">delete</button></td> 
+               </tr>
+     ` ;
 
-
-
-
-
-
-
-
-
+     }
+      }
+     }else{
+       for (let i = 0 ; i < dataPro.length ; i++){
+      if(dataPro[i].category.includes(value)){
+        j++
+        foundindexes.push(i);
+        console.log(i);
+         tablesearch += `
+          <tr>
+                <td>${i}</td>
+                <td>${dataPro[i].title}</td>
+                <td>${dataPro[i].price}</td>
+                <td>${dataPro[i].taxes}</td>
+                <td>${dataPro[i].ads}</td>
+                <td>${dataPro[i].discount}</td>
+                <td>${dataPro[i].total}</td>
+                <td>${dataPro[i].category}</td>
+                <td><button id="update" onclick="updateData(${i})">update</button></td>
+                <td><button id="delete" onclick="deleteData(${i})">delete</button></td> 
+               </tr>
+     ` ;
+      
+     } 
+       }
+      }
+      document.getElementById('tbody').innerHTML = tablesearch ; 
+      deleteall.innerHTML = `DELETE ALL ${j}` ; 
+      moodelete = "pasnormal" ;
+      deleteall.addEventListener("click", function(){
+    for (let k = foundindexes.length - 1; k >= 0; k--) {
+        dataPro.splice(foundindexes[k], 1);
+    }
+    localStorage.setItem("product", JSON.stringify(dataPro));
+    deleteall.innerHTML = `DELETE ALL ${dataPro.length}` ; 
+    showData();
+       });
+    }
 
 
 // cleandata

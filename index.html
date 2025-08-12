@@ -35,12 +35,15 @@
 
     <div class="outputs">
       <div class="searchBlock">
-        <input type="text" id="search" placeholder="search">
+        <input onkeyup="searchData(this.value)" type ="text" id="search" placeholder="search">
           <div class="btnSearch">
-           <button id="searchTitle">Search By Title</button>
-           <button id="searchCategory">Search By Category</button>
+           <button onclick="getSearchMood(id)"  id="searchTitle">Search By Title</button>
+           <button onclick="getSearchMood(id)"  id="searchCategory">Search By Category</button>
          </div>
-            <button id="deleteall" style = "display: none;" onclick="deleteAll()">delete all</button>
+            <button id="deleteall" style="display: none;" 
+    onclick="if ( mooddelete === 'normal') { deleteAll(); }">
+    delete all 
+</button> 
         <table>
             <tr>
                 <th>ID</th>
