@@ -40,7 +40,7 @@ It allows you to **Create, Read, Update, and Delete products**, as well as **sea
 This is a great friendly project to:
 - Practice JavaScript CRUD operations
 - Learn and use localStorage
-- Understand real-world product management logic
+- Understand real world product management logic
   
 ---
 ## Notes
