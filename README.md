@@ -21,9 +21,9 @@ It allows you to Create, Read, Update, and Delete products, as well as search an
   - Individually
   - All at once
 - Local storage support — your data stays even after refreshing the page.
-
 ---
- ##Installation
+
+ ## Installation
  1. Clone this repository:
    ```bash
    https://github.com/linadelh/product_management_system.git
